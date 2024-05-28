@@ -11,8 +11,8 @@ struct PokemonListView: View {
     @ObservedObject var model = PokemonApiModelTest.shared
     var body: some View {
         NavigationStack{
-            List(self.model.pokemonDetail){ pokemon in
-                NavigationLink(destination:PokemonDetailView(pokemon: pokemon)){
+            List(self.model.pokemonDetails){ pokemon in
+                NavigationLink(destination:PokemonDetailView(pokemonDetail: pokemon)){
                     PokemonRowView(pokemonDetail: pokemon)
                 }
             }

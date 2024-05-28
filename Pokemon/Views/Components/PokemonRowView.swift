@@ -11,9 +11,29 @@ struct PokemonRowView: View {
     let pokemonDetail: PokemonDetail
     var body: some View {
         HStack{
-            Text(pokemonDetail.name)
+                ZStack{
+                    
+                    Circle()
+                        .fill(.gray)
+                        .frame(width: 100, height: 100)
+                   
+                    AsyncImage(url: URL(string: pokemonDetail.sprites.frontDefault)){ image in
+                        image.resizable()
+                            .frame(width: 100, height: 100)
+                            .aspectRatio(contentMode: .fill)
+                    }placeholder: {
+                        ProgressView()
+                    }.frame(width: 60, height: 60)
+                }
+            Text("No.\(String(format: "%03d",pokemonDetail.id))")
+            
             Spacer()
-            Image(systemName: "star.fill")
+            
+            Text(pokemonDetail.name)
+                .font(.title3)
+                .bold()
+            
+            Spacer()
         }
     }
 }

@@ -5,7 +5,7 @@ import Combine
 class PokemonApiModelTest: ObservableObject {
     public static let shared = PokemonApiModelTest()
     
-    @Published var pokemonDetail: PokemonDetail!
+    @Published var pokemonDetails: [PokemonDetail] = []
     @Published var results: [Result] = []
     
     public func fetchPokemonList(params: PokemonParametersModel?, completion: @escaping ([Result]) -> Void) {
@@ -40,7 +40,7 @@ class PokemonApiModelTest: ObservableObject {
             switch response.result {
             case .success(let pokemonDetail):
                 DispatchQueue.main.async {
-                    self.pokemonDetail = pokemonDetail
+                    self.pokemonDetails.append(pokemonDetail)
                     print("Fetched details for \(pokemon.name): \(pokemonDetail)")
                 }
                 self.fetchPokemonDetails(pokemons: pokemons, currentIndex: currentIndex + 1)
