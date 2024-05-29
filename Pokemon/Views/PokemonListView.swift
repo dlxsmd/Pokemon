@@ -6,22 +6,35 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct PokemonListView: View {
     @ObservedObject var model = PokemonApiModelTest.shared
+    @State var searchtext = ""
     var body: some View {
-        NavigationStack{
-            List(self.model.pokemonDetails){ pokemon in
-                NavigationLink(destination:PokemonDetailView(pokemonDetail: pokemon)){
-                    PokemonRowView(pokemonDetail: pokemon)
+        
+        NavigationStack {
+            List(filterdpokemon) { result in
+                NavigationLink(destination: PokemonDetailView(pokemonDetail: result)) {
+                    PokemonRowView(pokemonDetail: result)
                 }
             }
-            .onAppear{
+            .onAppear {
                 model.setPokemon(params: PokemonParametersModel(limit: 10000, offset: 0))
             }
+        }.searchable(text: $searchtext,placement: .navigationBarDrawer(displayMode: .always))
+
+    }
+    
+    var filterdpokemon: [PokemonDetail] {
+        if searchtext.isEmpty {
+            return model.pokemonDetails
+        } else {
+            return model.pokemonDetails.filter { $0.name.contains(searchtext) }
         }
     }
 }
+
 
 #Preview {
     PokemonListView()

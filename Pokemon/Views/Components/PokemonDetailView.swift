@@ -8,31 +8,58 @@
 import SwiftUI
 
 struct PokemonDetailView: View {
+    @ObservedObject var model = PokemonApiModelTest2.shared
     let pokemonDetail: PokemonDetail
     @State var isShiny = false
+    
     var body: some View {
+        
         NavigationStack{
-            AsyncImage(url: URL(string: isShiny ? pokemonDetail.sprites.frontShiny :pokemonDetail.sprites.frontDefault)){ image in
-                image.resizable()
-                    .frame(width: 200, height: 200)
-                    .aspectRatio(contentMode: .fit)
-                    .padding(.bottom,80)
-                    .onTapGesture {
-                        isShiny.toggle()
+            HStack{
+                
+              //  Spacer()
+                VStack{
+                    if pokemonDetail.sprites.frontShiny != nil{
+                        AsyncImage(url: URL(string: isShiny ? pokemonDetail.sprites.frontShiny! :pokemonDetail.sprites.frontDefault!)){ image in
+                            image.resizable()
+                                .frame(width: 200, height: 200)
+                                .aspectRatio(contentMode: .fit)
+                                .onTapGesture {
+                                    isShiny.toggle()
+                                }
+                        }placeholder: {
+                            ProgressView()
+                        }.frame(width: 60, height: 60)
+                    }else if pokemonDetail.sprites.frontDefault != nil{
+                        AsyncImage(url: URL(string:pokemonDetail.sprites.frontDefault!)){ image in
+                            image.resizable()
+                                .frame(width: 200, height: 200)
+                                .aspectRatio(contentMode: .fit)
+                        }placeholder: {
+                            ProgressView()
+                        }.frame(width: 60, height: 60)
+                    }else{
+                        Rectangle()
+                            .fill(.gray)
+                            .frame(width: 200, height: 200)
                     }
-            }placeholder: {
-                ProgressView()
-            }.frame(width: 60, height: 60)
+                }.padding(45)
+                
+                
+                
+                VStack{
+                    Text(pokemonDetail.name)
+                        .font(.title2)
+                        .bold()
+                    Text("Weight: \(pokemonDetail.weight/10)Kg")
+                    Text("Height: \(String(format:"%.1f",Double(pokemonDetail.height)/10.0))m")
+                }
+              //  Spacer()
+            }
             
-            Text(pokemonDetail.name)
-                .font(.title2)
-                .bold()
-           
             .navigationTitle("No.\(String(format: "%03d",pokemonDetail.id))")
         }
     }
 }
 
-#Preview {
-    PokemonDetailView(pokemonDetail:PokemonDetail(abilities: [Ability(ability: Species(name: "Static", url: "https://pokeapi.co/api/v2/ability/9/"), isHidden: false, slot: 3)], baseExperience: 112, forms: [Species(name: "pikachu", url: "https://pokeapi.co/api/v2/pokemon-species/25/")], height: 4, id: 25, name: "pikachu", order: 35, species: Species(name: "pikachu", url: "https://pokeapi.co/api/v2/pokemon-species/25/"), sprites: Sprites(backDefault: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/25.png", backShiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/25.png", frontDefault: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png", frontShiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/25.png", animated: nil), weight: 60))
-}
+

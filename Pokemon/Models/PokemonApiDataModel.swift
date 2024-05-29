@@ -1,5 +1,7 @@
 import Foundation
 
+// MARK: - PokemonApiModel
+
 struct PokemonList: Codable {
     let results: [Result]
 }
@@ -17,9 +19,10 @@ struct Result: Codable, Identifiable {
     }
 }
 
+// MARK: - PokemonApiModelTest
+
 struct PokemonDetail: Codable,Identifiable {
     let abilities: [Ability]
-    let baseExperience: Int
     let forms: [Species]
     let height: Int
     let id: Int
@@ -31,7 +34,6 @@ struct PokemonDetail: Codable,Identifiable {
     
     enum CodingKeys: String, CodingKey {
         case abilities
-        case baseExperience = "base_experience"
         case forms
         case height
         case id
@@ -64,25 +66,55 @@ struct Species: Codable {
 
 // MARK: - Sprites
 class Sprites: Codable {
-    let backDefault: String
-    let backShiny: String
-    let frontDefault: String
-    let frontShiny: String
-    let animated: Sprites?
+    let frontDefault: String?
+    let frontShiny: String?
+
     
     enum CodingKeys: String, CodingKey {
-        case backDefault = "back_default"
-        case backShiny = "back_shiny"
         case frontDefault = "front_default"
         case frontShiny = "front_shiny"
-        case animated
     }
     
-    init(backDefault: String, backShiny: String, frontDefault: String, frontShiny: String, animated: Sprites?) {
-        self.backDefault = backDefault
-        self.backShiny = backShiny
+    init(frontDefault: String? = nil, frontShiny: String? = nil) {
         self.frontDefault = frontDefault
         self.frontShiny = frontShiny
-        self.animated = animated
     }
 }
+
+// MARK: - PokemonApiModelTest2
+
+struct PokemonDetail2: Codable {
+    let color: Color
+    let evolutionChain: EvolutionChain
+    let flavorTextEntries: [FlavorTextEntry]
+    let formDescriptions: [String?]
+    let name: String
+    let names: [Name]
+    let shape: Color
+}
+
+// MARK: - Color
+struct Color: Codable {
+    let name: String
+    let url: String
+}
+
+// MARK: - EvolutionChain
+struct EvolutionChain: Codable {
+    let url: String
+}
+
+// MARK: - FlavorTextEntry
+struct FlavorTextEntry: Codable {
+    let flavorText: String
+    let language, version: Color
+}
+
+
+
+// MARK: - Name
+struct Name: Codable {
+    let language: Color
+    let name: String
+}
+
