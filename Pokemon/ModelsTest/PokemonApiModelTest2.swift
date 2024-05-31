@@ -8,6 +8,7 @@
 import UIKit
 import Alamofire
 import Combine
+import Dispatch
 
 class PokemonApiModelTest2: ObservableObject {
     public static let shared = PokemonApiModelTest2()
@@ -25,9 +26,21 @@ class PokemonApiModelTest2: ObservableObject {
                     DispatchQueue.main.async {
                         self.results = pokemonList.results
                         print(self.results)
-                        self.fetchPokemonDetails(pokemons: self.results)
-                        self.fetchPokemonDetails2(pokemons: self.results)
-                        completion(pokemonList.results)
+                        let group = DispatchGroup()
+                        for pokemon in self.results{
+                            group.enter()
+                            self.fetchPokemonDetails(pokemon: pokemon){
+                                group.leave()
+                            }
+                            group.enter()
+                            self.fetchPokemonDetails2(pokemon: pokemon){
+                                group.leave()
+                            }
+                        }
+                        group.notify(queue: .main) {
+                            print("Fetched all Pokemon details.")
+                            completion(pokemonList.results)
+                        }
                     }
                 case .failure(let error):
                     print("Request error: \(error)")
@@ -35,13 +48,7 @@ class PokemonApiModelTest2: ObservableObject {
             }
     }
     
-    func fetchPokemonDetails(pokemons: [Result], currentIndex: Int = 0) {
-        if currentIndex >= pokemons.count {
-            print("Fetched all Pokemon details.")
-            return
-        }
-
-        let pokemon = pokemons[currentIndex]
+    func fetchPokemonDetails(pokemon: Result, completion: @escaping () -> Void) {
         let pokemonDetailUrl = "https://pokeapi.co/api/v2/pokemon/\(pokemon.name)"
         print("Fetching details for: \(pokemon.name) from \(pokemonDetailUrl)")
 
@@ -49,23 +56,20 @@ class PokemonApiModelTest2: ObservableObject {
             switch response.result {
             case .success(let pokemonDetail):
                 DispatchQueue.main.async {
-                    self.pokemonDetails.append(pokemonDetail)
-                    print("Fetched details for \(pokemon.name): \(pokemonDetail)")
+                    if !self.pokemonDetails.contains(where: { $0.id == pokemonDetail.id }) {
+                        self.pokemonDetails.append(pokemonDetail)
+                        print("Fetched details for \(pokemon.name): \(pokemonDetail)")
+                    }
+                    completion()
                 }
-                self.fetchPokemonDetails(pokemons: pokemons, currentIndex: currentIndex + 1)
             case .failure(let error):
                 print("Failed to fetch details for \(pokemon.name): \(error.localizedDescription)")
+                completion()
             }
         }
     }
 
-    func fetchPokemonDetails2(pokemons: [Result], currentIndex: Int = 0) {
-        if currentIndex >= pokemons.count {
-            print("Fetched all Pokemon details.")
-            return
-        }
-
-        let pokemon = pokemons[currentIndex]
+    func fetchPokemonDetails2(pokemon: Result, completion: @escaping () -> Void) {
         let pokemonDetail2Url = "https://pokeapi.co/api/v2/pokemon-species/\(pokemon.name)"
         print("Fetching details for: \(pokemon.name) from \(pokemonDetail2Url)")
 
@@ -74,11 +78,13 @@ class PokemonApiModelTest2: ObservableObject {
             case .success(let pokemonDetail2):
                 DispatchQueue.main.async {
                     self.pokemonDetails2.append(pokemonDetail2)
-                    print("Fetched details for \(pokemon.name): \(pokemonDetail2)")
+                    print(pokemonDetail2)
+                    completion()
                 }
-                self.fetchPokemonDetails2(pokemons: pokemons, currentIndex: currentIndex + 1)
             case .failure(let error):
                 print("Failed to fetch details for \(pokemon.name): \(error.localizedDescription)")
+                completion()
+
             }
         }
     }

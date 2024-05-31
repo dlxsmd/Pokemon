@@ -16,8 +16,7 @@ struct PokemonDetailView: View {
         
         NavigationStack{
             HStack{
-                
-              //  Spacer()
+                //  Spacer()
                 VStack{
                     if pokemonDetail.sprites.frontShiny != nil{
                         AsyncImage(url: URL(string: isShiny ? pokemonDetail.sprites.frontShiny! :pokemonDetail.sprites.frontDefault!)){ image in
@@ -41,25 +40,34 @@ struct PokemonDetailView: View {
                     }else{
                         Rectangle()
                             .fill(.gray)
-                            .frame(width: 200, height: 200)
+                            .frame(width: 100, height: 100)
                     }
                 }.padding(45)
                 
                 
                 
                 VStack{
-                    Text(pokemonDetail.name)
-                        .font(.title2)
-                        .bold()
-                    Text("Weight: \(pokemonDetail.weight/10)Kg")
-                    Text("Height: \(String(format:"%.1f",Double(pokemonDetail.height)/10.0))m")
+                    if let jpname = model.pokemonDetails2.first(where: { $0.id == pokemonDetail.id })?.names.first(where: { $0.language.name == "ja-Hrkt" }) {
+                        Text(jpname.name)
+                            .font(.custom("PKMN-REGULAR", size: 50))
+                            .bold()
+                    }else if let enname = model.pokemonDetails2.first(where: { $0.id == pokemonDetail.id })?.names.first(where: { $0.language.name == "en" }) {
+                        Text(enname.name)
+                            .font(.custom("PKMN-REGULAR", size: 50))
+                            .bold()
+                    }
+                    Text("おもさ: \(String(format:"%.1f",Double(pokemonDetail.weight)/10.0))Kg")
+                        .font(.custom("PKMN-REGULAR", size: 30))
+                    Text("たかさ: \(String(format:"%.1f",Double(pokemonDetail.height)/10.0))m")
+                        .font(.custom("PKMN-REGULAR", size: 30))
                 }
-              //  Spacer()
             }
-            
-            .navigationTitle("No.\(String(format: "%03d",pokemonDetail.id))")
-        }
+            if let flavorTextEntry = model.pokemonDetails2.first(where: { $0.id == pokemonDetail.id })?.flavorTextEntries.first(where: { $0.language.name == "ja-Hrkt" }) {
+                Text(flavorTextEntry.flavorText)
+                    .font(.custom("PKMN-REGULAR", size: 35))
+                    .padding()
+            }
+        }.navigationTitle("No.\(String(format: "%03d",pokemonDetail.id))")
     }
 }
-
 

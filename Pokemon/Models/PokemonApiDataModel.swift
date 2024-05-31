@@ -23,22 +23,18 @@ struct Result: Codable, Identifiable {
 
 struct PokemonDetail: Codable,Identifiable {
     let abilities: [Ability]
-    let forms: [Species]
     let height: Int
     let id: Int
     let name: String
-    let order: Int
     let species: Species
     let sprites: Sprites
     let weight: Int
     
     enum CodingKeys: String, CodingKey {
         case abilities
-        case forms
         case height
         case id
         case name
-        case order
         case species
         case sprites
         case weight
@@ -81,40 +77,45 @@ class Sprites: Codable {
     }
 }
 
-// MARK: - PokemonApiModelTest2
-
-struct PokemonDetail2: Codable {
-    let color: Color
-    let evolutionChain: EvolutionChain
+// MARK: - PokemonDetail2
+struct PokemonDetail2: Codable, Identifiable {
+    let color: Color?
     let flavorTextEntries: [FlavorTextEntry]
-    let formDescriptions: [String?]
+    let id: Int
     let name: String
     let names: [Name]
-    let shape: Color
+    
+    enum CodingKeys: String, CodingKey {
+        case color
+        case flavorTextEntries = "flavor_text_entries"
+        case id
+        case name
+        case names
+    }
 }
-
 // MARK: - Color
 struct Color: Codable {
     let name: String
     let url: String
 }
 
-// MARK: - EvolutionChain
-struct EvolutionChain: Codable {
-    let url: String
-}
 
 // MARK: - FlavorTextEntry
 struct FlavorTextEntry: Codable {
     let flavorText: String
-    let language, version: Color
+    let language: Color
+    
+    enum CodingKeys: String, CodingKey {
+        case flavorText = "flavor_text"
+        case language
+    }
+
 }
-
-
 
 // MARK: - Name
 struct Name: Codable {
     let language: Color
     let name: String
 }
+
 

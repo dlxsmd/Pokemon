@@ -8,39 +8,37 @@
 import SwiftUI
 
 struct PokemonRowView: View {
+    @ObservedObject var model = PokemonApiModelTest2.shared
     let pokemonDetail: PokemonDetail
     var body: some View {
         HStack{
-                ZStack{
-                    
-                    Circle()
-                        .fill(.gray)
-                        .frame(width: 100, height: 100)
-                   
-                    if pokemonDetail.sprites.frontDefault != nil{
-                        AsyncImage(url: URL(string: pokemonDetail.sprites.frontDefault!)){ image in
-                            image.resizable()
-                                .frame(width: 100, height: 100)
-                                .aspectRatio(contentMode: .fill)
-                        }placeholder: {
-                            ProgressView()
-                        }.frame(width: 60, height: 60)
-                    }
+            ZStack{
+                
+                Circle()
+                    .fill(.gray)
+                    .frame(width: 100, height: 100)
+                
+                if pokemonDetail.sprites.frontDefault != nil{
+                    AsyncImage(url: URL(string: pokemonDetail.sprites.frontDefault!)){ image in
+                        image.resizable()
+                            .frame(width: 100, height: 100)
+                            .aspectRatio(contentMode: .fill)
+                    }placeholder: {
+                        ProgressView()
+                    }.frame(width: 60, height: 60)
                 }
+            }
             Text("No.\(String(format: "%03d",pokemonDetail.id))")
             
-            
             Spacer()
             
-            Text(pokemonDetail.name)
-                .font(.title3)
-                .bold()
-            
-            Spacer()
+            if let jpname = model.pokemonDetails2.first(where: { $0.id == pokemonDetail.id })?.names.first(where: { $0.language.name == "ja-Hrkt" || $0.language.name == "ja"}) {
+                Text(jpname.name)
+                    .font(.custom("PKMN-REGULAR", size: 30))
+                    .bold()
+                
+                Spacer()
+            }
         }
     }
-}
-
-#Preview {
-    PokemonRowView(pokemonDetail: PokemonDetail(abilities: [Ability(ability: Species(name: "Static", url: "https://pokeapi.co/api/v2/ability/9/"), isHidden: false, slot: 3)], forms: [Species(name: "pikachu", url: "https://pokeapi.co/api/v2/pokemon-species/25/")], height: 4, id: 25, name: "pikachu", order: 35, species: Species(name: "pikachu", url: "https://pokeapi.co/api/v2/pokemon-species/25/"), sprites: Sprites(frontDefault: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png", frontShiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/25.png"), weight: 60))
 }
