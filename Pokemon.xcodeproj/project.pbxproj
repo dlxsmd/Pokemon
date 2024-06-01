@@ -11,14 +11,16 @@
 		7F9251712C0472FD00AB26E9 /* PokemonApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9251702C0472FD00AB26E9 /* PokemonApiModel.swift */; };
 		7F9251732C04730200AB26E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F9251722C04730200AB26E9 /* Assets.xcassets */; };
 		7F9251762C04730200AB26E9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F9251752C04730200AB26E9 /* Preview Assets.xcassets */; };
-		7F9251812C04743A00AB26E9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7F9251802C04743A00AB26E9 /* Alamofire */; };
-		7F9251832C04743A00AB26E9 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 7F9251822C04743A00AB26E9 /* AlamofireDynamic */; };
 		7F9251852C04748600AB26E9 /* PokemonApiDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9251842C04748600AB26E9 /* PokemonApiDataModel.swift */; };
 		7F9251872C047B3800AB26E9 /* PokemonParametersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9251862C047B3800AB26E9 /* PokemonParametersModel.swift */; };
 		7F9251892C047C4700AB26E9 /* PokemonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9251882C047C4700AB26E9 /* PokemonListView.swift */; };
 		7F92518B2C055F2500AB26E9 /* PokemonRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F92518A2C055F2400AB26E9 /* PokemonRowView.swift */; };
 		7F92518D2C05600100AB26E9 /* PokemonDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F92518C2C05600100AB26E9 /* PokemonDetailView.swift */; };
 		7F9251912C0570FB00AB26E9 /* PokemonApiModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9251902C0570FB00AB26E9 /* PokemonApiModelTest.swift */; };
+		7F9251932C06B16300AB26E9 /* PokemonApiModelTest2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9251922C06B16300AB26E9 /* PokemonApiModelTest2.swift */; };
+		7F92519B2C06ED5500AB26E9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7F92519A2C06ED5500AB26E9 /* Alamofire */; };
+		7F9EAF042C08798F0043A2FE /* pkmn_s.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7F9EAF032C08798E0043A2FE /* pkmn_s.ttf */; };
+		7F9EAF072C087E7A0043A2FE /* pkmn_r.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7F9EAF062C087E790043A2FE /* pkmn_r.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,10 @@
 		7F92518A2C055F2400AB26E9 /* PokemonRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonRowView.swift; sourceTree = "<group>"; };
 		7F92518C2C05600100AB26E9 /* PokemonDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailView.swift; sourceTree = "<group>"; };
 		7F9251902C0570FB00AB26E9 /* PokemonApiModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonApiModelTest.swift; sourceTree = "<group>"; };
+		7F9251922C06B16300AB26E9 /* PokemonApiModelTest2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonApiModelTest2.swift; sourceTree = "<group>"; };
+		7F9EAF032C08798E0043A2FE /* pkmn_s.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pkmn_s.ttf; sourceTree = "<group>"; };
+		7F9EAF052C087B150043A2FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		7F9EAF062C087E790043A2FE /* pkmn_r.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pkmn_r.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,8 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F9251812C04743A00AB26E9 /* Alamofire in Frameworks */,
-				7F9251832C04743A00AB26E9 /* AlamofireDynamic in Frameworks */,
+				7F92519B2C06ED5500AB26E9 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,8 +72,10 @@
 		7F92516D2C0472FD00AB26E9 /* Pokemon */ = {
 			isa = PBXGroup;
 			children = (
+				7F9EAF052C087B150043A2FE /* Info.plist */,
+				7F9EAF222C09BF800043A2FE /* fonts */,
 				7F92517E2C04733100AB26E9 /* Models */,
-				7F92518F2C0570D700AB26E9 /* ModelsTest */,
+				7F92518F2C0570D700AB26E9 /* TestModels */,
 				7F92517C2C04730E00AB26E9 /* Views */,
 				7F92516E2C0472FD00AB26E9 /* PokemonApp.swift */,
 				7F9251722C04730200AB26E9 /* Assets.xcassets */,
@@ -113,12 +120,22 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
-		7F92518F2C0570D700AB26E9 /* ModelsTest */ = {
+		7F92518F2C0570D700AB26E9 /* TestModels */ = {
 			isa = PBXGroup;
 			children = (
 				7F9251902C0570FB00AB26E9 /* PokemonApiModelTest.swift */,
+				7F9251922C06B16300AB26E9 /* PokemonApiModelTest2.swift */,
 			);
-			path = ModelsTest;
+			path = TestModels;
+			sourceTree = "<group>";
+		};
+		7F9EAF222C09BF800043A2FE /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				7F9EAF032C08798E0043A2FE /* pkmn_s.ttf */,
+				7F9EAF062C087E790043A2FE /* pkmn_r.ttf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +155,7 @@
 			);
 			name = Pokemon;
 			packageProductDependencies = (
-				7F9251802C04743A00AB26E9 /* Alamofire */,
-				7F9251822C04743A00AB26E9 /* AlamofireDynamic */,
+				7F92519A2C06ED5500AB26E9 /* Alamofire */,
 			);
 			productName = Pokemon;
 			productReference = 7F92516B2C0472FD00AB26E9 /* Pokemon.app */;
@@ -170,7 +186,7 @@
 			);
 			mainGroup = 7F9251622C0472FD00AB26E9;
 			packageReferences = (
-				7F92517F2C04743A00AB26E9 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				7F9251992C06ED5500AB26E9 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 7F92516C2C0472FD00AB26E9 /* Products */;
 			projectDirPath = "";
@@ -187,6 +203,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F9251762C04730200AB26E9 /* Preview Assets.xcassets in Resources */,
+				7F9EAF072C087E7A0043A2FE /* pkmn_r.ttf in Resources */,
+				7F9EAF042C08798F0043A2FE /* pkmn_s.ttf in Resources */,
 				7F9251732C04730200AB26E9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -203,6 +221,7 @@
 				7F9251712C0472FD00AB26E9 /* PokemonApiModel.swift in Sources */,
 				7F9251872C047B3800AB26E9 /* PokemonParametersModel.swift in Sources */,
 				7F92516F2C0472FD00AB26E9 /* PokemonApp.swift in Sources */,
+				7F9251932C06B16300AB26E9 /* PokemonApiModelTest2.swift in Sources */,
 				7F92518D2C05600100AB26E9 /* PokemonDetailView.swift in Sources */,
 				7F9251912C0570FB00AB26E9 /* PokemonApiModelTest.swift in Sources */,
 				7F9251852C04748600AB26E9 /* PokemonApiDataModel.swift in Sources */,
@@ -264,7 +283,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -321,7 +340,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -342,11 +361,13 @@
 				DEVELOPMENT_TEAM = GMQ738Q64K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Pokemon/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -371,11 +392,13 @@
 				DEVELOPMENT_TEAM = GMQ738Q64K;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Pokemon/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -413,7 +436,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		7F92517F2C04743A00AB26E9 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		7F9251992C06ED5500AB26E9 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
 			requirement = {
@@ -424,15 +447,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		7F9251802C04743A00AB26E9 /* Alamofire */ = {
+		7F92519A2C06ED5500AB26E9 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7F92517F2C04743A00AB26E9 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 7F9251992C06ED5500AB26E9 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		7F9251822C04743A00AB26E9 /* AlamofireDynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 7F92517F2C04743A00AB26E9 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = AlamofireDynamic;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

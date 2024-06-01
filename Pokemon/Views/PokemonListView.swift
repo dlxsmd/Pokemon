@@ -10,13 +10,16 @@ import SwiftData
 
 struct PokemonListView: View {
     @ObservedObject var model = PokemonApiModelTest2.shared
+    
     @State var searchtext = ""
     var body: some View {
         
         NavigationStack {
             List(filterdpokemon.sorted(by: { $0.id < $1.id })) { result in
-                NavigationLink(destination: PokemonDetailView(pokemonDetail: result)) {
-                    PokemonRowView(pokemonDetail: result)
+                if let pokemonDetail2 = model.pokemonDetails2.first(where: { $0.id == result.id }){
+                    NavigationLink(destination: PokemonDetailView(pokemonDetail: result,pokemonDetail2:pokemonDetail2)) {
+                        PokemonRowView(pokemonDetail: result,pokemonDetail2:pokemonDetail2)
+                    }
                 }
             }
             .onAppear {
@@ -31,7 +34,8 @@ struct PokemonListView: View {
         if searchtext.isEmpty {
             return model.pokemonDetails
         } else {
-            return model.pokemonDetails.filter { $0.name.contains(searchtext) }
+            return model.pokemonDetails.filter {
+                $0.name.contains(searchtext) }
         }
     }
 }

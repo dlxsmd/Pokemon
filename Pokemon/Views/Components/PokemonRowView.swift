@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct PokemonRowView: View {
-    @ObservedObject var model = PokemonApiModelTest2.shared
     let pokemonDetail: PokemonDetail
+    let pokemonDetail2: PokemonDetail2
     var body: some View {
         HStack{
             ZStack{
@@ -32,7 +32,7 @@ struct PokemonRowView: View {
             
             Spacer()
             
-            if let jpname = model.pokemonDetails2.first(where: { $0.id == pokemonDetail.id })?.names.first(where: { $0.language.name == "ja-Hrkt" || $0.language.name == "ja"}) {
+            if let jpname = pokemonDetail2.names.first(where: { $0.language.name == "ja-Hrkt" || $0.language.name == "ja"}) {
                 Text(jpname.name)
                     .font(.custom("PKMN-REGULAR", size: 30))
                     .bold()
