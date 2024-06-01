@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct PokemonListView: View {
-    @ObservedObject var model = PokemonApiModelTest2.shared
+    @ObservedObject var model = PokemonApiModel.shared
     
     @State var searchtext = ""
     @State var isReverse = false

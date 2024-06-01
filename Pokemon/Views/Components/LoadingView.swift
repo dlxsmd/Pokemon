@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LoadingView: View {
-    @ObservedObject var model = PokemonApiModelTest2.shared
+    @ObservedObject var model = PokemonApiModel.shared
     var body: some View {
         
         if model.progress() < 1 {
