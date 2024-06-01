@@ -15,69 +15,66 @@ struct PokemonDetailView: View {
     
     var body: some View {
         
-                    ZStack{
-                Image("pokedex")
-                    .resizable()
-                    .edgesIgnoringSafeArea(.all)
-                    .aspectRatio(contentMode: .fill)
-
-                               
-                VStack{
-                    HStack{
-                        VStack{
-                            if pokemonDetail.sprites.frontShiny != nil{
-                                AsyncImage(url: URL(string: isShiny ? pokemonDetail.sprites.frontShiny! :pokemonDetail.sprites.frontDefault!)){ image in
-                                    image.resizable()
-                                        .frame(width: 150, height: 150)
-                                        .aspectRatio(contentMode: .fit)
-                                        .onTapGesture {
-                                            isShiny.toggle()
-                                        }
-                                }placeholder: {
-                                    ProgressView()
-                                }.frame(width: 60, height: 60)
-                            }else if pokemonDetail.sprites.frontDefault != nil{
-                                AsyncImage(url: URL(string:pokemonDetail.sprites.frontDefault!)){ image in
-                                    image.resizable()
-                                        .frame(width: 150, height: 150)
-                                        .aspectRatio(contentMode: .fit)
-                                }placeholder: {
-                                    ProgressView()
-                                }.frame(width: 60, height: 60)
-                            }else{
-                                Rectangle()
-                                    .fill(.gray)
-                                    .frame(width: 70, height: 70)
-                            }
-                        }.padding()
-                        
-                        
-                        
-                        VStack{
-                            
-                                Text(pokemonDetail2.jpname!)
-                                    .font(.custom("PKMN-REGULAR", size: 40))
-                                    .bold()
-                            VStack(alignment: .leading){
-                                Text("おもさ: \(String(format:"%.1f",Double(pokemonDetail.weight)/10.0))Kg")
-                                    .font(.custom("PKMN-REGULAR", size: 20))
-                                Text("たかさ: \(String(format:"%.1f",Double(pokemonDetail.height)/10.0))m")
-                                    .font(.custom("PKMN-REGULAR", size: 20))
-                            }
-                        }.padding(.leading,10)
-                    }
-                    if let flavorTextEntry = pokemonDetail2.flavorTextEntries.first(where: { $0.language.name == "ja-Hrkt" }) {
-                        Text(flavorTextEntry.flavorText)
-                            .font(.custom("PKMN-REGULAR", size: 30))
-                            .padding(.horizontal,5)
-                            .padding(.top,5)
-                    }
-                }.frame(width: 250, height: 300)
-                    .offset(x:10,y: -150)
-            }
-                    .navigationTitle("No.\(String(format: "%03d",pokemonDetail.id))")
+        ZStack{
+            Image("pokedex")
+                .resizable()
+                .edgesIgnoringSafeArea(.all)
+                .aspectRatio(contentMode: .fill)
+            
+            
+            VStack{
+                HStack{
+                    VStack{
+                        if pokemonDetail.sprites.frontShiny != nil{
+                            AsyncImage(url: URL(string: isShiny ? pokemonDetail.sprites.frontShiny! :pokemonDetail.sprites.frontDefault!)){ image in
+                                image.resizable()
+                                    .frame(width: 150, height: 150)
+                                    .aspectRatio(contentMode: .fit)
+                                    .onTapGesture {
+                                        isShiny.toggle()
+                                    }
+                            }placeholder: {
+                                ProgressView()
+                            }.frame(width: 60, height: 60)
+                        }else if pokemonDetail.sprites.frontDefault != nil{
+                            AsyncImage(url: URL(string:pokemonDetail.sprites.frontDefault!)){ image in
+                                image.resizable()
+                                    .frame(width: 150, height: 150)
+                                    .aspectRatio(contentMode: .fit)
+                            }placeholder: {
+                                ProgressView()
+                            }.frame(width: 60, height: 60)
+                        }else{
+                            Rectangle()
+                                .fill(.gray)
+                                .frame(width: 70, height: 70)
+                        }
+                    }.padding()
+                    
+                    VStack{
+                        Text(pokemonDetail2.jpname!)
+                            .font(.custom("PKMN-REGULAR", size: 40))
+                            .bold()
+                        VStack(alignment: .leading){
+                            Text("おもさ: \(String(format:"%.1f",Double(pokemonDetail.weight)/10.0))Kg")
+                                .font(.custom("PKMN-REGULAR", size: 20))
+                            Text("たかさ: \(String(format:"%.1f",Double(pokemonDetail.height)/10.0))m")
+                                .font(.custom("PKMN-REGULAR", size: 20))
+                        }
+                    }.padding(.leading,10)
+                }
+                if let flavorTextEntry = pokemonDetail2.flavorTextEntries.first(where: { $0.language.name == "ja-Hrkt" }) {
+                    Text(flavorTextEntry.flavorText)
+                        .font(.custom("PKMN-REGULAR", size: 30))
+                        .padding(.horizontal,5)
+                        .padding(.top,5)
+                }
+            }.frame(width: 250, height: 300)
+                .offset(x:10,y: -150)
         }
+        .navigationTitle("No.\(String(format: "%03d",pokemonDetail.id))")
     }
+}
 
 
 #Preview {

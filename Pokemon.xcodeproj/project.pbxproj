@@ -21,6 +21,7 @@
 		7F92519B2C06ED5500AB26E9 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 7F92519A2C06ED5500AB26E9 /* Alamofire */; };
 		7F9EAF042C08798F0043A2FE /* pkmn_s.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7F9EAF032C08798E0043A2FE /* pkmn_s.ttf */; };
 		7F9EAF072C087E7A0043A2FE /* pkmn_r.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7F9EAF062C087E790043A2FE /* pkmn_r.ttf */; };
+		7FE2B6F32C0B43E10055A35F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE2B6F22C0B43E00055A35F /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		7F9EAF032C08798E0043A2FE /* pkmn_s.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pkmn_s.ttf; sourceTree = "<group>"; };
 		7F9EAF052C087B150043A2FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7F9EAF062C087E790043A2FE /* pkmn_r.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = pkmn_r.ttf; sourceTree = "<group>"; };
+		7FE2B6F22C0B43E00055A35F /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			children = (
 				7F92518A2C055F2400AB26E9 /* PokemonRowView.swift */,
 				7F92518C2C05600100AB26E9 /* PokemonDetailView.swift */,
+				7FE2B6F22C0B43E00055A35F /* LoadingView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 				7F9251892C047C4700AB26E9 /* PokemonListView.swift in Sources */,
 				7F92518B2C055F2500AB26E9 /* PokemonRowView.swift in Sources */,
 				7F9251712C0472FD00AB26E9 /* PokemonApiModel.swift in Sources */,
+				7FE2B6F32C0B43E10055A35F /* LoadingView.swift in Sources */,
 				7F9251872C047B3800AB26E9 /* PokemonParametersModel.swift in Sources */,
 				7F92516F2C0472FD00AB26E9 /* PokemonApp.swift in Sources */,
 				7F9251932C06B16300AB26E9 /* PokemonApiModelTest2.swift in Sources */,

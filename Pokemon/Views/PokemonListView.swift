@@ -23,9 +23,6 @@ struct PokemonListView: View {
                     }
                 }
             }
-            .onAppear {
-                model.setPokemon(params: PokemonParametersModel(limit: 1025, offset: 0))
-            }
             .animation(.easeInOut(duration: 0.5),value: filterdpokemon.count)
             .navigationTitle("ポケモン図鑑")
             .toolbar {
@@ -40,7 +37,7 @@ struct PokemonListView: View {
             }
         }
         .searchable(text: $searchtext,placement:
-        .navigationBarDrawer(displayMode: .always))
+                .navigationBarDrawer(displayMode: .always))
     }
     
     var filterdpokemon: [PokemonDetail2] {

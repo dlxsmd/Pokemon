@@ -16,6 +16,7 @@ class PokemonApiModelTest2: ObservableObject {
     @Published var pokemonDetails: [PokemonDetail] = []
     @Published var pokemonDetails2: [PokemonDetail2] = []
     @Published var results: [Result] = []
+    @Published var fetchcount = 0
     
     public func fetchPokemonList(params: PokemonParametersModel?, completion: @escaping ([Result]) -> Void) {
         let pokemonListUrl = "https://pokeapi.co/api/v2/pokemon"
@@ -39,6 +40,7 @@ class PokemonApiModelTest2: ObservableObject {
                         }
                         group.notify(queue: .main) {
                             print("Fetched all Pokemon details.")
+                            self.fetchcount = 1025
                             completion(pokemonList.results)
                         }
                     }
@@ -89,7 +91,7 @@ class PokemonApiModelTest2: ObservableObject {
                     var updatedPokemonDetail2 = pokemonDetail2
                     updatedPokemonDetail2.jpname = jpname
                     self.pokemonDetails2.append(updatedPokemonDetail2)
-                    print(pokemonDetail2)
+                    self.fetchcount += 1
                     completion()
                 }
             case .failure(let error):
@@ -107,5 +109,11 @@ class PokemonApiModelTest2: ObservableObject {
                 self.results = info
             }
         }
+    }
+    
+    public func progress() -> Float {
+        let total: Float = 1025
+        let fetched: Float = Float(fetchcount)
+        return fetched / total
     }
 }

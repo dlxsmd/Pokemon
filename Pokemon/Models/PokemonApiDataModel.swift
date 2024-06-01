@@ -20,7 +20,6 @@ struct Result: Codable, Identifiable {
 }
 
 // MARK: - PokemonApiModelTest
-
 struct PokemonDetail: Codable,Identifiable {
     let height: Int
     let id: Int
@@ -58,7 +57,6 @@ class Sprites: Codable {
 }
 
 // MARK: - PokemonDetail2
-
 struct PokemonDetail2: Codable, Identifiable {
     let color: Color?
     let flavorTextEntries: [FlavorTextEntry]
