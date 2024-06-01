@@ -64,6 +64,7 @@ struct PokemonDetail2: Codable, Identifiable {
     let flavorTextEntries: [FlavorTextEntry]
     let id: Int
     let name: String
+    var jpname: String?
     let names: [Name]
     
     enum CodingKeys: String, CodingKey {
@@ -71,6 +72,7 @@ struct PokemonDetail2: Codable, Identifiable {
         case flavorTextEntries = "flavor_text_entries"
         case id
         case name
+        case jpname
         case names
     }
 }

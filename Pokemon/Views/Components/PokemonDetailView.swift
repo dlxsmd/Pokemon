@@ -54,19 +54,16 @@ struct PokemonDetailView: View {
                         
                         
                         VStack{
-                            if let jpname = pokemonDetail2.names.first(where: { $0.language.name == "ja-Hrkt" }) {
-                                Text(jpname.name)
+                            
+                                Text(pokemonDetail2.jpname!)
                                     .font(.custom("PKMN-REGULAR", size: 40))
                                     .bold()
-                            }else if let enname = pokemonDetail2.names.first(where: { $0.language.name == "en" }) {
-                                Text(enname.name)
-                                    .font(.custom("PKMN-REGULAR", size: 50))
-                                    .bold()
+                            VStack(alignment: .leading){
+                                Text("おもさ: \(String(format:"%.1f",Double(pokemonDetail.weight)/10.0))Kg")
+                                    .font(.custom("PKMN-REGULAR", size: 20))
+                                Text("たかさ: \(String(format:"%.1f",Double(pokemonDetail.height)/10.0))m")
+                                    .font(.custom("PKMN-REGULAR", size: 20))
                             }
-                            Text("おもさ: \(String(format:"%.1f",Double(pokemonDetail.weight)/10.0))Kg")
-                                .font(.custom("PKMN-REGULAR", size: 20))
-                            Text("たかさ: \(String(format:"%.1f",Double(pokemonDetail.height)/10.0))m")
-                                .font(.custom("PKMN-REGULAR", size: 20))
                         }.padding(.leading,10)
                     }
                     if let flavorTextEntry = pokemonDetail2.flavorTextEntries.first(where: { $0.language.name == "ja-Hrkt" }) {
@@ -84,5 +81,5 @@ struct PokemonDetailView: View {
 
 
 #Preview {
-    PokemonDetailView(pokemonDetail: PokemonDetail(height: 10, id: 1, sprites: Sprites(frontDefault: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png", frontShiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png"), weight: 10, name: "bulbasaur"), pokemonDetail2: PokemonDetail2(color: Color(name: "green", url: "https://pokeapi.co/api/v2/pokemon-color/5/"), flavorTextEntries: [FlavorTextEntry(flavorText: "うまれたときから　せなかに　ふしぎな　タネが　うえてあって　からだと　ともに　そだつという。", language: Color(name: "ja-Hrkt", url: "https://pokeapi.co/api/v2/language/1/"))], id: 1, name: "bulbasaur", names: [Name(language: Color(name: "ja-Hrkt", url: "https://pokeapi.co/api/v2/language/1/"), name: "フシギダネ")]))
+    PokemonDetailView(pokemonDetail: PokemonDetail(height: 10, id: 1, sprites: Sprites(frontDefault: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png", frontShiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png"), weight: 10, name: "bulbasaur"), pokemonDetail2: PokemonDetail2(color: Color(name: "green", url: "https://pokeapi.co/api/v2/pokemon-color/5/"), flavorTextEntries: [FlavorTextEntry(flavorText: "うまれたときから　せなかに　ふしぎな　タネが　うえてあって　からだと　ともに　そだつという。", language: Color(name: "ja-Hrkt", url: "https://pokeapi.co/api/v2/language/1/"))], id: 1, name: "bulbasaur",jpname: "フシギダネ",names: [Name(language: Color(name: "ja-Hrkt", url: "https://pokeapi.co/api/v2/language/1/"), name: "フシギダネ")]))
 }

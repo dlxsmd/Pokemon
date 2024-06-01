@@ -12,13 +12,14 @@ struct PokemonListView: View {
     @ObservedObject var model = PokemonApiModelTest2.shared
     
     @State var searchtext = ""
+    @State var isReverse = false
     var body: some View {
         
         NavigationStack {
-            List(filterdpokemon.sorted(by: { $0.id < $1.id })) { result in
-                if let pokemonDetail2 = model.pokemonDetails2.first(where: { $0.id == result.id }){
-                    NavigationLink(destination: PokemonDetailView(pokemonDetail: result,pokemonDetail2:pokemonDetail2)) {
-                        PokemonRowView(pokemonDetail: result,pokemonDetail2:pokemonDetail2)
+            List(filterdpokemon.sorted(by: isReverse ?  { $0.id > $1.id } : { $0.id < $1.id })) { result in
+                if let pokemonDetail = model.pokemonDetails.first(where: { $0.id == result.id }){
+                    NavigationLink(destination: PokemonDetailView(pokemonDetail: pokemonDetail,pokemonDetail2:result)) {
+                        PokemonRowView(pokemonDetail: pokemonDetail,pokemonDetail2:result)
                     }
                 }
             }
@@ -26,16 +27,28 @@ struct PokemonListView: View {
                 model.setPokemon(params: PokemonParametersModel(limit: 1025, offset: 0))
             }
             .animation(.easeInOut(duration: 0.5),value: filterdpokemon.count)
-        }.searchable(text: $searchtext,placement: .navigationBarDrawer(displayMode: .always))
-
+            .navigationTitle("ポケモン図鑑")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        isReverse.toggle()
+                    }) {
+                        Image(systemName: isReverse ? "arrow.up.circle" : "arrow.down.circle")
+                            .font(.title2)
+                    }
+                }
+            }
+        }
+        .searchable(text: $searchtext,placement:
+        .navigationBarDrawer(displayMode: .always))
     }
     
-    var filterdpokemon: [PokemonDetail] {
+    var filterdpokemon: [PokemonDetail2] {
         if searchtext.isEmpty {
-            return model.pokemonDetails
+            return model.pokemonDetails2
         } else {
-            return model.pokemonDetails.filter {
-                $0.name.contains(searchtext) }
+            return model.pokemonDetails2.filter {
+                $0.jpname!.contains(searchtext) || $0.name.contains(searchtext) }
         }
     }
 }

@@ -32,13 +32,13 @@ struct PokemonRowView: View {
             
             Spacer()
             
-            if let jpname = pokemonDetail2.names.first(where: { $0.language.name == "ja-Hrkt" || $0.language.name == "ja"}) {
-                Text(jpname.name)
+            
+            Text(pokemonDetail2.jpname!)
                     .font(.custom("PKMN-REGULAR", size: 30))
                     .bold()
                 
                 Spacer()
-            }
+            
         }
     }
 }

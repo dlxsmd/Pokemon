@@ -85,7 +85,10 @@ class PokemonApiModelTest2: ObservableObject {
             switch response.result {
             case .success(let pokemonDetail2):
                 DispatchQueue.main.async {
-                    self.pokemonDetails2.append(pokemonDetail2)
+                    let jpname = pokemonDetail2.names.first(where: { $0.language.name == "ja" })?.name
+                    var updatedPokemonDetail2 = pokemonDetail2
+                    updatedPokemonDetail2.jpname = jpname
+                    self.pokemonDetails2.append(updatedPokemonDetail2)
                     print(pokemonDetail2)
                     completion()
                 }
